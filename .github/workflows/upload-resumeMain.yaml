@@ -1,0 +1,22 @@
+name: Update Naukri Resume for ProfileMAIN
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  upload-resume:
+    runs-on: naukri-ec2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload resume to Naukri
+        uses: Prateek-Wayne/naukri-resume-action@v1.2.0
+        with:
+          username: ${{ secrets.NAUKRI_USERNAME_MAIN }}
+          password: ${{ secrets.NAUKRI_PASSWORD_MAIN }}
+          profile_id: ${{ secrets.NAUKRI_PROFILE_ID_MAIN }}
+          resume_path: ./resumes/Abhimanyu_Prasad_J.pdf
+          profile_summary: "Backend and Full Stack Developer with 2 years of experience at TCS. Skilled in Java, Spring Boot, Node.js, TypeScript, and REST API development. Experienced in cloud-native apps on Azure (AKS, Cosmos DB, Azure DevOps), Docker, Kubernetes, and CI/CD pipelines. Built Jobify, an AI-powered job-matching platform using Spring Boot and GPT-4 embeddings, and MediLink AI, a health-tech platform with AI recommendations. Hands-on with LangChain, RAG pipelines, LLM integration, and RLHF evaluation. Strong in system design, JPA, Hibernate, SQL, and NoSQL. Seeking roles in Backend, Full Stack, Java, Spring Boot, Node.js, Azure, AI/ML, and GenAI development."
